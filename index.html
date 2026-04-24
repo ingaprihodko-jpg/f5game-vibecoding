@@ -204,6 +204,18 @@ footer p{font-size:13px;margin-bottom:6px}
   0%,100% { opacity:0; transform:scale(0); }
   50% { opacity:1; transform:scale(1.5); }
 }
+
+/* Orbit animation */
+.orbit-container { position:relative; width:560px; height:560px; margin:56px auto 0; }
+.orbit-ring-anim { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:420px; height:420px; border:1.5px dashed rgba(115,43,193,0.25); border-radius:50%; animation: orbitSpin 20s linear infinite; }
+.orbit-items-wrap { position:absolute; top:0; left:0; width:100%; height:100%; animation: orbitSpin 20s linear infinite; }
+.orbit-items-text { position:absolute; top:0; left:0; width:100%; height:100%; animation: orbitSpinReverse 20s linear infinite; }
+@keyframes orbitSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes orbitSpinReverse { from{transform:rotate(0deg)} to{transform:rotate(-360deg)} }
+
+.o-point { position:absolute; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.o-dot { width:10px; height:10px; background:var(--purple); border-radius:50%; box-shadow:0 0 8px rgba(115,43,193,0.5); }
+.o-label { font-size:13px; font-weight:600; color:var(--black); text-align:center; width:140px; line-height:1.4; background:rgba(255,255,255,0.9); padding:4px 8px; border-radius:8px; }
 </style>
 </head>
 <body>
@@ -271,17 +283,70 @@ footer p{font-size:13px;margin-bottom:6px}
     <div class="stag">Из чего состоит</div>
     <h2 class="stitle">Сайт бизнес-игры — это</h2>
     <p class="slead">Кидаете одну ссылку — человек сразу понимает всё и может купить билет.</p>
-    <div class="circle-wrap">
-      <div class="c-ring"></div>
-      <div class="c-center" style="width:200px;height:200px;background:transparent;box-shadow:none;overflow:visible;">
-        <img src="hero.svg" alt="Ольга с игрой" style="width:260px;height:auto;margin-top:-60px;position:relative;z-index:10;"/>
+    <div class="orbit-container">
+      <!-- Center: girl illustration -->
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;width:260px;">
+        <img src="hero.svg" alt="Ольга с игрой" style="width:100%;height:auto;display:block;"/>
       </div>
-      <div class="c-item" style="top:4px;left:50%;transform:translateX(-50%)"><div class="c-dot"></div><span>Пробуждение жгучего любопытства</span></div>
-      <div class="c-item" style="top:72px;right:4px"><div class="c-dot"></div><span>Развеивание заблуждений</span></div>
-      <div class="c-item" style="top:50%;right:-24px;transform:translateY(-50%)"><div class="c-dot"></div><span>Знакомство с ведущим</span></div>
-      <div class="c-item" style="bottom:72px;right:4px"><div class="c-dot"></div><span>Опыт других участников</span></div>
-      <div class="c-item" style="bottom:4px;left:50%;transform:translateX(-50%)"><div class="c-dot"></div><span>Результаты игры</span></div>
-      <div class="c-item" style="top:50%;left:-24px;transform:translateY(-50%)"><div class="c-dot"></div><span>Продающие смыслы</span></div>
+
+      <!-- Spinning ring -->
+      <div class="orbit-ring-anim"></div>
+
+      <!-- Spinning dots + counter-rotating labels -->
+      <!-- Top: 0deg -->
+      <div class="orbit-items-wrap" style="transform-origin:center center;">
+        <div class="o-point" style="position:absolute;top:50%;left:50%;transform:rotate(0deg) translateY(-210px) translateX(-50%);">
+          <div class="o-dot"></div>
+          <div class="orbit-items-text" style="position:static;animation:none;transform:rotate(0deg);">
+            <div class="o-label" style="transform:rotate(0deg)">Пробуждение жгучего любопытства</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-items-wrap" style="transform-origin:center center;animation-delay:-3.3s;">
+        <div class="o-point" style="position:absolute;top:50%;left:50%;transform:rotate(60deg) translateY(-210px) translateX(-50%);">
+          <div class="o-dot"></div>
+          <div style="animation:orbitSpinReverse 20s linear infinite;animation-delay:3.3s;">
+            <div class="o-label">Развеивание заблуждений</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-items-wrap" style="transform-origin:center center;animation-delay:-6.6s;">
+        <div class="o-point" style="position:absolute;top:50%;left:50%;transform:rotate(120deg) translateY(-210px) translateX(-50%);">
+          <div class="o-dot"></div>
+          <div style="animation:orbitSpinReverse 20s linear infinite;animation-delay:6.6s;">
+            <div class="o-label">Знакомство с ведущим</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-items-wrap" style="transform-origin:center center;animation-delay:-10s;">
+        <div class="o-point" style="position:absolute;top:50%;left:50%;transform:rotate(180deg) translateY(-210px) translateX(-50%);">
+          <div class="o-dot"></div>
+          <div style="animation:orbitSpinReverse 20s linear infinite;animation-delay:10s;">
+            <div class="o-label">Опыт других участников</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-items-wrap" style="transform-origin:center center;animation-delay:-13.3s;">
+        <div class="o-point" style="position:absolute;top:50%;left:50%;transform:rotate(240deg) translateY(-210px) translateX(-50%);">
+          <div class="o-dot"></div>
+          <div style="animation:orbitSpinReverse 20s linear infinite;animation-delay:13.3s;">
+            <div class="o-label">Результаты игры</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-items-wrap" style="transform-origin:center center;animation-delay:-16.6s;">
+        <div class="o-point" style="position:absolute;top:50%;left:50%;transform:rotate(300deg) translateY(-210px) translateX(-50%);">
+          <div class="o-dot"></div>
+          <div style="animation:orbitSpinReverse 20s linear infinite;animation-delay:16.6s;">
+            <div class="o-label">Продающие смыслы</div>
+          </div>
+        </div>
+      </div>
     </div>
     <p class="more-txt">и многое другое</p>
   </div>
