@@ -177,6 +177,33 @@ footer{background:var(--black);color:rgba(255,255,255,.45);padding:40px 5%;text-
 footer p{font-size:13px;margin-bottom:6px}
 @media(max-width:900px){.hero-inner,.prob-grid,.prob-sol,.prog-grid,.aud-grid,.author-inner,.tech-inner{grid-template-columns:1fr}.hero-visual{order:-1}.hero-ph{height:320px}.why-grid{grid-template-columns:1fr}.how-steps{grid-template-columns:1fr}.ach-grid{grid-template-columns:1fr}.circle-wrap{width:340px;height:340px}.c-ring{width:270px;height:270px}.c-item{width:120px}.c-item span{font-size:12px}}
 @media(max-width:600px){section{padding:60px 5%}.hero{padding:90px 5% 60px}.price-card{padding:32px 22px}.p-new{font-size:42px}}
+
+/* Floating hearts animation */
+.hearts-wrap { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:2; overflow:hidden; }
+.heart { position:absolute; font-size:22px; animation: floatHeart linear infinite; opacity:0; }
+.heart:nth-child(1) { left:22%; animation-duration:3s; animation-delay:0s; font-size:18px; }
+.heart:nth-child(2) { left:30%; animation-duration:3.5s; animation-delay:0.6s; font-size:24px; }
+.heart:nth-child(3) { left:18%; animation-duration:4s; animation-delay:1.2s; font-size:16px; }
+.heart:nth-child(4) { left:35%; animation-duration:3.2s; animation-delay:1.8s; font-size:20px; }
+.heart:nth-child(5) { left:25%; animation-duration:3.8s; animation-delay:0.9s; font-size:14px; }
+.heart:nth-child(6) { left:28%; animation-duration:4.2s; animation-delay:2.4s; font-size:22px; }
+@keyframes floatHeart {
+  0%   { bottom:35%; opacity:0; transform:translateX(0) scale(0.5); }
+  10%  { opacity:1; }
+  50%  { transform:translateX(20px) scale(1); }
+  80%  { opacity:0.6; }
+  100% { bottom:75%; opacity:0; transform:translateX(-15px) scale(0.8); }
+}
+/* Sparkle effect */
+.sparkle { position:absolute; width:6px; height:6px; border-radius:50%; animation: sparklePop ease-in-out infinite; }
+.sparkle:nth-child(1) { background:#ED1E79; top:30%; left:10%; animation-duration:2s; animation-delay:0s; }
+.sparkle:nth-child(2) { background:#F7E432; top:20%; right:15%; animation-duration:2.5s; animation-delay:0.5s; width:8px; height:8px; }
+.sparkle:nth-child(3) { background:#20BAEF; top:60%; right:8%; animation-duration:3s; animation-delay:1s; }
+.sparkle:nth-child(4) { background:#FF9ADF; top:15%; left:40%; animation-duration:2.2s; animation-delay:1.5s; width:5px; height:5px; }
+@keyframes sparklePop {
+  0%,100% { opacity:0; transform:scale(0); }
+  50% { opacity:1; transform:scale(1.5); }
+}
 </style>
 </head>
 <body>
