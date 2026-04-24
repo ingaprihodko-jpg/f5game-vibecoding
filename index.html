@@ -179,20 +179,20 @@ footer p{font-size:13px;margin-bottom:6px}
 @media(max-width:600px){section{padding:60px 5%}.hero{padding:90px 5% 60px}.price-card{padding:32px 22px}.p-new{font-size:42px}}
 
 /* Floating hearts animation */
-.hearts-wrap { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:2; overflow:hidden; }
-.heart { position:absolute; font-size:22px; animation: floatHeart linear infinite; opacity:0; }
-.heart:nth-child(1) { left:22%; animation-duration:3s; animation-delay:0s; font-size:18px; }
-.heart:nth-child(2) { left:30%; animation-duration:3.5s; animation-delay:0.6s; font-size:24px; }
-.heart:nth-child(3) { left:18%; animation-duration:4s; animation-delay:1.2s; font-size:16px; }
-.heart:nth-child(4) { left:35%; animation-duration:3.2s; animation-delay:1.8s; font-size:20px; }
-.heart:nth-child(5) { left:25%; animation-duration:3.8s; animation-delay:0.9s; font-size:14px; }
-.heart:nth-child(6) { left:28%; animation-duration:4.2s; animation-delay:2.4s; font-size:22px; }
+.hearts-wrap { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; overflow:visible; }
+.heart { position:absolute; animation: floatHeart ease-in-out infinite; opacity:0; }
+.heart:nth-child(1) { left:20%; bottom:45%; font-size:28px; animation-duration:2.5s; animation-delay:0s; }
+.heart:nth-child(2) { left:28%; bottom:48%; font-size:22px; animation-duration:3s; animation-delay:0.5s; }
+.heart:nth-child(3) { left:14%; bottom:44%; font-size:18px; animation-duration:2.8s; animation-delay:1s; }
+.heart:nth-child(4) { left:34%; bottom:50%; font-size:24px; animation-duration:3.2s; animation-delay:1.5s; }
+.heart:nth-child(5) { left:10%; bottom:42%; font-size:16px; animation-duration:2.6s; animation-delay:0.8s; }
+.heart:nth-child(6) { left:38%; bottom:46%; font-size:20px; animation-duration:3.5s; animation-delay:2s; }
 @keyframes floatHeart {
-  0%   { bottom:35%; opacity:0; transform:translateX(0) scale(0.5); }
-  10%  { opacity:1; }
-  50%  { transform:translateX(20px) scale(1); }
-  80%  { opacity:0.6; }
-  100% { bottom:75%; opacity:0; transform:translateX(-15px) scale(0.8); }
+  0%   { opacity:0; transform:translateY(0) translateX(0) scale(0.6) rotate(-10deg); }
+  15%  { opacity:1; }
+  50%  { transform:translateY(-120px) translateX(15px) scale(1.1) rotate(10deg); opacity:0.9; }
+  85%  { opacity:0.4; }
+  100% { opacity:0; transform:translateY(-220px) translateX(-10px) scale(0.7) rotate(-5deg); }
 }
 /* Sparkle effect */
 .sparkle { position:absolute; width:6px; height:6px; border-radius:50%; animation: sparklePop ease-in-out infinite; }
