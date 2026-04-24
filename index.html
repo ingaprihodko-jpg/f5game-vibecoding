@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>САЙТ ИГРЫ — Мастер-класс по вайбкодингу | F5GAME.RU</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ED1E79;--purple:#732BC1;--blue:#20BAEF;--red:#D32F2F;--green:#2AA817;--yellow:#F7E432;--light-pink:#FF9ADF;--dark-purple:#390084;--black:#111;--gray:#F5F5F7;--text:#1a1a1a;--text-light:#555}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:#fff;color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Unbounded',sans-serif;font-weight:900;font-size:18px;color:var(--black);text-decoration:none}
+.logo span{color:var(--pink)}
+.nav-btn{background:var(--red);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;border:none;border-radius:40px;padding:10px 24px;cursor:pointer;text-decoration:none}
+.hero{min-height:100vh;padding:100px 5% 80px;display:flex;align-items:center;position:relative;overflow:hidden;background:#fff}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(237,30,121,.08) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(32,186,239,.07) 0%,transparent 70%);border-radius:50%}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:6px 16px;border-radius:40px;margin-bottom:24px}
+.hero-label{font-size:15px;font-weight:600;color:var(--purple);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.hero-title{font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(40px,5vw,68px);line-height:1.05;color:var(--black);text-transform:uppercase;margin-bottom:20px;letter-spacing:-1px}
+.hero-title .outline{-webkit-text-stroke:3px var(--pink);color:transparent;display:block}
+.hero-subtitle{font-size:18px;font-weight:500;color:var(--text-light);line-height:1.6;margin-bottom:16px;max-width:480px}
+.hero-date{display:flex;align-items:center;gap:10px;margin-bottom:32px}
+.date-dot{width:9px;height:9px;background:var(--green);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero-date span{font-size:14px;color:var(--text-light)}
+.hero-date strong{font-size:15px;color:var(--black);font-weight:700}
+.hero-price{display:flex;align-items:center;gap:16px;margin-bottom:36px;flex-wrap:wrap}
+.price-old{font-size:22px;color:#aaa;text-decoration:line-through;font-weight:600}
+.price-new{font-family:'Unbounded',sans-serif;font-size:42px;font-weight:900;color:var(--black)}
+.price-save{background:var(--green);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:40px;text-transform:uppercase}
+.btn-red{display:inline-block;background:var(--red);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:1.5px;border:none;border-radius:40px;padding:20px 52px;cursor:pointer;text-decoration:none;box-shadow:0 8px 28px rgba(211,47,47,.35);transition:transform .2s,box-shadow .2s}
+.btn-red:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(211,47,47,.45)}
+.hero-visual{display:flex;justify-content:center;align-items:flex-end;position:relative}
+.hero-ph{width:100%;max-width:460px;height:540px;background:linear-gradient(145deg,#fdf0f6,#f0e8ff 50%,#e8f7ff);border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border:2px dashed rgba(237,30,121,.25);position:relative;overflow:hidden}
+.blob1{position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(237,30,121,.1);border-radius:50%}
+.blob2{position:absolute;bottom:20px;left:-20px;width:120px;height:120px;background:rgba(32,186,239,.1);border-radius:50%}
+.ph-em{font-size:90px;position:relative;z-index:1}
+.ph-lbl{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--purple);text-align:center;text-transform:uppercase;letter-spacing:1px;position:relative;z-index:1;line-height:1.5}
+.fc{position:absolute;border-radius:14px;padding:10px 16px;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.fc1{top:30px;left:-30px;background:#fff;color:var(--black);border-left:3px solid var(--pink);animation:f1 3s ease-in-out infinite}
+.fc2{bottom:90px;right:-30px;background:var(--dark-purple);color:#fff;animation:f2 3.5s ease-in-out infinite}
+@keyframes f1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes f2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+section{padding:90px 5%}
+.container{max-width:1100px;margin:0 auto}
+.stag{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--pink);margin-bottom:16px}
+.stag::before{content:'';width:16px;height:2px;background:var(--pink);flex-shrink:0}
+.stitle{font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(28px,4vw,44px);color:var(--black);text-transform:uppercase;line-height:1.1;letter-spacing:-.5px;margin-bottom:20px}
+.slead{font-size:18px;line-height:1.7;color:var(--text-light);max-width:700px;margin-bottom:48px}
+.why-sec{background:var(--gray)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+.why-card{background:#fff;border-radius:20px;padding:32px 28px;border:1px solid rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.wicon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
+.why-card h3{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:700;color:var(--black);margin-bottom:12px;text-transform:uppercase;line-height:1.3}
+.why-card p{font-size:15px;line-height:1.65;color:var(--text-light)}
+.circle-wrap{position:relative;width:560px;height:560px;margin:56px auto 0}
+.c-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:420px;height:420px;border:1.5px dashed rgba(115,43,193,.2);border-radius:50%}
+.c-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:130px;height:130px;background:linear-gradient(135deg,var(--pink),var(--purple));border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;z-index:5;box-shadow:0 8px 32px rgba(237,30,121,.3)}
+.c-center span{font-size:38px}
+.c-center p{font-family:'Unbounded',sans-serif;font-size:9px;font-weight:700;color:#fff;text-transform:uppercase;line-height:1.3;margin-top:4px}
+.c-item{position:absolute;width:155px;text-align:center}
+.c-dot{width:10px;height:10px;background:var(--purple);border-radius:50%;margin:0 auto 8px}
+.c-item span{font-size:13px;font-weight:600;color:var(--black);line-height:1.4}
+.more-txt{text-align:center;font-size:16px;color:var(--text-light);margin-top:24px;font-weight:600}
+.prob-sec{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.prob-sec .stag{color:var(--light-pink)}
+.prob-sec .stag::before{background:var(--light-pink)}
+.prob-sec .stitle{color:#fff}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.prob-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px}
+.prob-num{font-family:'Unbounded',sans-serif;font-size:52px;font-weight:900;color:rgba(255,255,255,.06);line-height:1;margin-bottom:8px}
+.prob-card h3{font-family:'Unbounded',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:var(--light-pink)}
+.prob-card p{font-size:15px;line-height:1.65;color:rgba(255,255,255,.7)}
+.prob-sol{margin-top:40px;background:rgba(255,255,255,.05);border:1px solid rgba(237,30,121,.3);border-radius:20px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.sol-text h3{font-family:'Unbounded',sans-serif;font-size:22px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:14px;line-height:1.3}
+.sol-text p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.7)}
+.sol-stats{display:flex;flex-direction:column;gap:14px}
+.stat{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);border-radius:12px;padding:16px 20px}
+.stat-ico{font-size:28px;flex-shrink:0}
+.stat p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.4}
+.stat strong{display:block;font-size:18px;font-weight:700;color:#fff}
+.prog-sec{background:var(--gray)}
+.prog-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}
+.prog-card{background:#fff;border-radius:20px;padding:36px;border:1px solid rgba(0,0,0,.06);position:relative;overflow:hidden}
+.prog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.c-pink::before{background:linear-gradient(90deg,var(--pink),var(--light-pink))}
+.c-blue::before{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.prog-ico{font-size:44px;margin-bottom:20px}
+.prog-card h3{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;color:var(--black);text-transform:uppercase;margin-bottom:8px;line-height:1.3}
+.prog-sub{font-size:14px;color:var(--text-light);margin-bottom:24px}
+.prog-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.prog-list li{display:flex;gap:12px;font-size:15px;line-height:1.5;color:var(--text)}
+.prog-list li::before{content:'→';font-weight:700;flex-shrink:0;margin-top:1px}
+.c-pink .prog-list li::before{color:var(--pink)}
+.c-blue .prog-list li::before{color:var(--blue)}
+.fmt-box{margin-top:28px;background:var(--gray);border-radius:14px;padding:22px}
+.fmt-box h4{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:14px;letter-spacing:1px}
+.fmt-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fmt-list li{display:flex;gap:10px;font-size:14px;color:var(--text-light);line-height:1.5;align-items:flex-start}
+.fmt-list li span{font-size:16px;flex-shrink:0}
+.gift-sec{background:linear-gradient(135deg,var(--dark-purple),#1a0040);text-align:center}
+.gift-sec .stag{color:var(--yellow)}
+.gift-sec .stag::before{background:var(--yellow)}
+.gift-sec .stitle{color:#fff}
+.gift-sec .slead{color:rgba(255,255,255,.7);margin:0 auto 48px}
+.gift-box{display:inline-flex;flex-direction:column;align-items:center;gap:24px}
+.gift-ph{width:200px;height:200px;background:rgba(255,255,255,.08);border:2px dashed rgba(255,255,255,.2);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.gift-ph span{font-size:70px}
+.gift-ph p{font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.gift-title{font-family:'Unbounded',sans-serif;font-size:20px;font-weight:700;color:#fff;text-transform:uppercase;max-width:480px;text-align:center;line-height:1.45}
+.aud-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;align-items:start}
+.aud-main{background:linear-gradient(135deg,#fdf0f6,#f0e8ff);border-radius:24px;padding:40px}
+.aud-main h3{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:14px;line-height:1.3}
+.aud-main p{font-size:15px;line-height:1.7;color:var(--text-light)}
+.aud-bottom{margin-top:20px;background:linear-gradient(135deg,var(--pink),var(--purple));border-radius:18px;padding:28px 32px}
+.aud-bottom p{font-size:16px;line-height:1.6;color:#fff}
+.aud-also{display:flex;flex-direction:column;gap:14px}
+.aud-also h3{font-family:'Unbounded',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:6px}
+.atag{display:flex;align-items:center;gap:14px;background:var(--gray);border-radius:14px;padding:18px 22px;font-size:15px;color:var(--text);font-weight:500;transition:background .2s}
+.atag:hover{background:#E8E8ED}
+.atag span{font-size:22px;flex-shrink:0}
+.tech-sec{background:var(--gray)}
+.tech-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
+.tech-vis{background:linear-gradient(145deg,#fdf0f6,#e8f7ff);border-radius:24px;padding:48px 36px;text-align:center}
+.big-em{font-size:80px;margin-bottom:20px;display:block}
+.tech-vis h3{font-family:'Unbounded',sans-serif;font-size:20px;font-weight:700;color:var(--black);text-transform:uppercase;margin-bottom:12px;line-height:1.3}
+.tech-vis p{font-size:15px;color:var(--text-light);line-height:1.6}
+.tpoints{display:flex;flex-direction:column;gap:20px}
+.tpoint{display:flex;gap:16px;align-items:flex-start}
+.tpoint-ico{width:46px;height:46px;flex-shrink:0;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:22px}
+.tpoint h4{font-family:'Unbounded',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:6px}
+.tpoint p{font-size:14px;color:var(--text-light);line-height:1.6}
+.how-sec{background:#fff}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+.how-step{background:var(--gray);border-radius:20px;padding:32px 28px}
+.snum{font-family:'Unbounded',sans-serif;font-size:64px;font-weight:900;color:rgba(0,0,0,.05);line-height:1;margin-bottom:-8px}
+.sico{font-size:34px;margin-bottom:14px;display:block}
+.how-step h3{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:12px;line-height:1.3}
+.how-step p{font-size:15px;line-height:1.65;color:var(--text-light)}
+.cloud-note{margin-top:32px;background:linear-gradient(135deg,#fff8e1,#fff3e0);border:1px solid rgba(247,228,50,.5);border-left:4px solid #F59E0B;border-radius:16px;padding:24px 28px}
+.cloud-note h4{font-family:'Unbounded',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:10px}
+.cloud-note p{font-size:15px;color:var(--text-light);line-height:1.6}
+.cloud-note strong{color:var(--black);font-weight:700}
+.author-sec{background:var(--gray)}
+.author-inner{display:grid;grid-template-columns:320px 1fr;gap:60px;align-items:start;margin-top:48px}
+.author-photo{width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,#fdf0f6,#e8d5ff);border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px dashed rgba(237,30,121,.2);font-size:90px;position:relative}
+.author-photo::after{content:'ФОТО ВЕДУЩЕГО';font-family:'Unbounded',sans-serif;font-size:10px;font-weight:700;color:var(--purple);letter-spacing:2px;position:absolute;bottom:24px;text-transform:uppercase}
+.aname{font-family:'Unbounded',sans-serif;font-size:clamp(28px,3.5vw,46px);font-weight:900;color:var(--black);text-transform:uppercase;line-height:1.1;letter-spacing:-1px;margin-bottom:8px}
+.arole{font-size:14px;color:var(--purple);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:24px}
+.abio{font-size:16px;line-height:1.75;color:var(--text-light);margin-bottom:32px}
+.ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ach{background:#fff;border-radius:16px;padding:20px;display:flex;gap:12px;align-items:flex-start;border:1px solid rgba(0,0,0,.06)}
+.ach-ico{font-size:22px;flex-shrink:0}
+.ach p{font-size:14px;color:var(--text);line-height:1.5;font-weight:500}
+.price-sec{background:linear-gradient(135deg,var(--dark-purple),#2d0060);text-align:center;position:relative;overflow:hidden}
+.price-sec::before{content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(237,30,121,.15) 0%,transparent 70%);border-radius:50%}
+.price-sec .stag{color:var(--yellow)}
+.price-sec .stag::before{background:var(--yellow)}
+.price-sec .stitle{color:#fff}
+.price-card{max-width:520px;margin:48px auto 0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:28px;padding:48px;position:relative;z-index:2}
+.pc-title{font-family:'Unbounded',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--light-pink);margin-bottom:32px}
+.pc-list{list-style:none;margin-bottom:36px;text-align:left}
+.pc-list li{display:flex;align-items:center;gap:12px;font-size:16px;color:rgba(255,255,255,.85);padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.pc-list li:last-child{border-bottom:none}
+.chk{color:var(--green);font-size:18px}
+.price-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.p-old{font-size:24px;color:rgba(255,255,255,.3);text-decoration:line-through;font-weight:600}
+.p-new{font-family:'Unbounded',sans-serif;font-size:56px;font-weight:900;color:#fff;line-height:1}
+.p-note{font-size:13px;color:rgba(255,255,255,.45);margin-top:20px;line-height:1.6}
+footer{background:var(--black);color:rgba(255,255,255,.45);padding:40px 5%;text-align:center}
+.flogo{font-family:'Unbounded',sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:12px}
+.flogo span{color:var(--pink)}
+footer p{font-size:13px;margin-bottom:6px}
+@media(max-width:900px){.hero-inner,.prob-grid,.prob-sol,.prog-grid,.aud-grid,.author-inner,.tech-inner{grid-template-columns:1fr}.hero-visual{order:-1}.hero-ph{height:320px}.why-grid{grid-template-columns:1fr}.how-steps{grid-template-columns:1fr}.ach-grid{grid-template-columns:1fr}.circle-wrap{width:340px;height:340px}.c-ring{width:270px;height:270px}.c-item{width:120px}.c-item span{font-size:12px}}
+@media(max-width:600px){section{padding:60px 5%}.hero{padding:90px 5% 60px}.price-card{padding:32px 22px}.p-new{font-size:42px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo">F5<span>GAME</span>.RU</a>
+  <a href="#buy" class="nav-btn">Участвую</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">F5GAME.RU — Мастер-класс</div>
+      <div class="hero-label">Вайбкодинг для ведущих бизнес-игр</div>
+      <h1 class="hero-title">САЙТ<br><span class="outline">ИГРЫ</span></h1>
+      <p class="hero-subtitle">Мастер-класс по созданию сайта, приглашающего на ваше мероприятие, с помощью вайбкодинга</p>
+      <div class="hero-date">
+        <span class="date-dot"></span>
+        <span>Дата мастер-класса:</span>
+        <strong>24 апреля 2026</strong>
+      </div>
+      <div class="hero-price">
+        <span class="price-old">25 000 ₽</span>
+        <span class="price-new">9 500 ₽</span>
+        <span class="price-save">−62%</span>
+      </div>
+      <a href="#buy" class="btn-red">УЧАСТВУЮ</a>
+    </div>
+    <div class="hero-visual">
+      <div class="fc fc1">💻 Сделано за 1 вечер</div>
+      <div class="hero-ph">
+        <div class="blob1"></div>
+        <div class="blob2"></div>
+        <span class="ph-em">👩‍💻</span>
+        <p class="ph-lbl">Здесь будет<br>иллюстрация</p>
+      </div>
+      <div class="fc fc2">🚀 Без дизайнера!</div>
+    </div>
+  </div>
+</section>
+
+<section class="why-sec">
+  <div class="container">
+    <div class="stag">Зачем это нужно</div>
+    <h2 class="stitle">Зачем ведущему<br>нужен сайт сегодня?</h2>
+    <p class="slead">Чтобы собрать участников на игру, нужно много рассказывать о мероприятии. Но если делать это только в соцсетях — важная информация не доходит до возможных клиентов.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wicon" style="background:linear-gradient(135deg,#fde8f3,#f8d5eb)">📲</div>
+        <h3>Посты теряются в ленте</h3>
+        <p>Один человек читает Telegram, другой — ВК, третий — только рассылки. Из-за блокировок соцсетей непонятно, где анонс выстрелит в следующий раз.</p>
+      </div>
+      <div class="why-card">
+        <div class="wicon" style="background:linear-gradient(135deg,#e8f0ff,#d5e3ff)">👥</div>
+        <h3>Маленькая аудитория</h3>
+        <p>Если у вас маленькая аудитория, базы для рассылок может просто не быть. Сайт работает для любого размера аудитории.</p>
+      </div>
+      <div class="why-card">
+        <div class="wicon" style="background:linear-gradient(135deg,#e8fff0,#d5f5e3)">🎯</div>
+        <h3>Единая точка входа</h3>
+        <p>Сайт — единая посадочная страница. Собираете информацию один раз и используете для всех каналов продвижения.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="stag">Из чего состоит</div>
+    <h2 class="stitle">Сайт бизнес-игры — это</h2>
+    <p class="slead">Кидаете одну ссылку — человек сразу понимает всё и может купить билет.</p>
+    <div class="circle-wrap">
+      <div class="c-ring"></div>
+      <div class="c-center"><span>🎮</span><p>Сайт вашей игры</p></div>
+      <div class="c-item" style="top:4px;left:50%;transform:translateX(-50%)"><div class="c-dot"></div><span>Пробуждение жгучего любопытства</span></div>
+      <div class="c-item" style="top:72px;right:4px"><div class="c-dot"></div><span>Развеивание заблуждений</span></div>
+      <div class="c-item" style="top:50%;right:-24px;transform:translateY(-50%)"><div class="c-dot"></div><span>Знакомство с ведущим</span></div>
+      <div class="c-item" style="bottom:72px;right:4px"><div class="c-dot"></div><span>Опыт других участников</span></div>
+      <div class="c-item" style="bottom:4px;left:50%;transform:translateX(-50%)"><div class="c-dot"></div><span>Результаты игры</span></div>
+      <div class="c-item" style="top:50%;left:-24px;transform:translateY(-50%)"><div class="c-dot"></div><span>Продающие смыслы</span></div>
+    </div>
+    <p class="more-txt">и многое другое</p>
+  </div>
+</section>
+
+<section class="prob-sec">
+  <div class="container">
+    <div class="stag">Проблема</div>
+    <h2 class="stitle">Но есть проблема</h2>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="prob-num">01</div>
+        <h3>Дорого</h3>
+        <p>Разработка сайта с дизайнером под каждое новое мероприятие — дорого. В среднем на рынке сайт стоит от 35 000 ₽.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">02</div>
+        <h3>Долго</h3>
+        <p>Разработка занимает минимум неделю. Раньше это было недоступно многим, особенно новичкам.</p>
+      </div>
+    </div>
+    <div class="prob-sol">
+      <div class="sol-text">
+        <h3>Теперь всё изменилось</h3>
+        <p>Благодаря вайбкодингу и нейросетям — можно научиться создавать сайты быстро, технически несложно и без больших затрат. Мы сами убедились — сделали сайт на интенсив «Многоходовки» за один вечер.</p>
+      </div>
+      <div class="sol-stats">
+        <div class="stat"><span class="stat-ico">⚡</span><div><strong>1 вечер</strong><p>вместо недели с дизайнером</p></div></div>
+        <div class="stat"><span class="stat-ico">💰</span><div><strong>~$20</strong><p>только стоимость сервиса Cloud</p></div></div>
+        <div class="stat"><span class="stat-ico">🎯</span><div><strong>Проверено на себе</strong><p>сайт «Многоходовки» сделан вайбкодингом</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prog-sec">
+  <div class="container">
+    <div class="stag">Программа</div>
+    <h2 class="stitle">Что будет на<br>мастер-классе</h2>
+    <p class="slead">Пошагово разберём, как ведущему бизнес-игр создавать лендинги для мероприятий. Две важные темы одновременно.</p>
+    <div class="prog-grid">
+      <div class="prog-card c-pink">
+        <div class="prog-ico">💡</div>
+        <h3>Продающие смыслы</h3>
+        <p class="prog-sub">Вы поймёте, как писать продающие сайты для ведущего бизнес-игр</p>
+        <ul class="prog-list">
+          <li>Какие блоки обязательно должны быть на сайте</li>
+          <li>Как подать информацию, чтобы она продавала</li>
+          <li>Как закрыть все вопросы клиента ещё на этапе чтения сайта</li>
+          <li>Как побудить сделать первый шаг</li>
+        </ul>
+      </div>
+      <div class="prog-card c-blue">
+        <div class="prog-ico">⚙️</div>
+        <h3>Система работы</h3>
+        <p class="prog-sub">Научитесь быстро и недорого делать сайты своими руками</p>
+        <ul class="prog-list">
+          <li>Никакой технической подготовки не нужно</li>
+          <li>Создание сайта в реальном времени вместе с вами</li>
+          <li>Любые вопросы — ответы от ведущего прямо в эфире</li>
+          <li>Пошаговая стратегия — повторяйте в любое время</li>
+        </ul>
+        <div class="fmt-box">
+          <h4>Формат — практикум в прямом эфире</h4>
+          <ul class="fmt-list">
+            <li><span>🖥️</span> Zoom — наблюдаете за экраном ведущего</li>
+            <li><span>🎬</span> Запись мастер-класса — доступ 3 месяца</li>
+            <li><span>❓</span> Вопросы и ответы по ходу эфира</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gift-sec">
+  <div class="container">
+    <div class="stag">Подарок</div>
+    <h2 class="stitle">Подарок для всех<br>участников</h2>
+    <p class="slead">Каждый участник мастер-класса получает в подарок</p>
+    <div class="gift-box">
+      <div class="gift-ph"><span>🎁</span><p>Коробка подарка</p></div>
+      <div class="gift-title">Набор всех пазлов для составления сайта ведущего бизнес-игр</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="stag">Для кого</div>
+    <h2 class="stitle">Кого ждём на<br>мастер-классе?</h2>
+    <div class="aud-grid">
+      <div>
+        <div class="aud-main">
+          <h3>В первую очередь — ведущие наших бизнес-игр</h3>
+          <p>Мы сделали этот мастер-класс специально для вас, чтобы вы могли легко и без больших затрат создавать сайты для своих мероприятий.</p>
+        </div>
+        <div class="aud-bottom">
+          <p>Для всех мастер-класс станет <strong>прекрасным и лёгким входом в вайбкодинг</strong> — независимо от уровня технической подготовки.</p>
+        </div>
+      </div>
+      <div class="aud-also">
+        <h3>А также все, кто:</h3>
+        <div class="atag"><span>💻</span>Интересуется вайбкодингом</div>
+        <div class="atag"><span>🌐</span>Хочет создавать сайты для своих проектов самостоятельно</div>
+        <div class="atag"><span>⚡</span>Хочет экономить время и деньги на разработке</div>
+        <div class="atag"><span>🚀</span>Тестирует гипотезы быстро и без больших затрат</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech-sec">
+  <div class="container">
+    <div class="stag">Философия</div>
+    <h2 class="stitle">Технологии не заменят вас,<br>но усилят</h2>
+    <div class="tech-inner">
+      <div class="tech-vis">
+        <span class="big-em">🤝</span>
+        <h3>Человек + ИИ</h3>
+        <p>Мы в F5GAME.RU постоянно тестируем новые технические возможности и придумываем, как их использовать, чтобы сделать работу эффективнее, а идеи — ярче.</p>
+      </div>
+      <div class="tpoints">
+        <div class="tpoint"><div class="tpoint-ico">🎯</div><div><h4>Смыслы + инструмент</h4><p>На мастер-классе речь идёт не только о технической стороне создания сайта, но и о его логике и смыслах.</p></div></div>
+        <div class="tpoint"><div class="tpoint-ico">⚡</div><div><h4>Вайбкодинг как усилитель</h4><p>Вайбкодинг станет инструментом, позволяющим выразить смыслы и усилить ваш профессионализм.</p></div></div>
+        <div class="tpoint"><div class="tpoint-ico">🌱</div><div><h4>Сообщество роста</h4><p>Этому учим и вас — участников чудесного сообщества F5GAME.RU.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-sec">
+  <div class="container">
+    <div class="stag">Как проходит</div>
+    <h2 class="stitle">Как будет проходить<br>мастер-класс</h2>
+    <div class="how-steps">
+      <div class="how-step"><div class="snum">01</div><span class="sico">💻</span><h3>Zoom-практикум</h3><p>Мастер-класс проходит в Zoom. Вы наблюдаете за экраном ведущего и задаёте вопросы в реальном времени.</p></div>
+      <div class="how-step"><div class="snum">02</div><span class="sico">🛠️</span><h3>Создаём вместе</h3><p>В реальном времени собираем лендинг для конкретной бизнес-игры с помощью сервиса Cloud.</p></div>
+      <div class="how-step"><div class="snum">03</div><span class="sico">🔄</span><h3>Повторяете сами</h3><p>Получаете запись на 3 месяца и пошаговую стратегию. Создаёте лендинги для своих мероприятий в любое время.</p></div>
+    </div>
+    <div class="cloud-note">
+      <h4>⚠️ Важно про сервис Cloud</h4>
+      <p>Для самостоятельной работы потребуется купить доступ к сервису Cloud отдельно — <strong>~$20</strong>. На мастер-классе вы получите инструкцию по подключению. Покупка оплачивается самостоятельно напрямую сервису.</p>
+    </div>
+  </div>
+</section>
+
+<section class="author-sec">
+  <div class="container">
+    <div class="stag">Ведущий</div>
+    <h2 class="stitle">Ваш ведущий</h2>
+    <div class="author-inner">
+      <div class="author-photo">👩</div>
+      <div>
+        <div class="aname">ОЛЬГА<br>ГРИЩЕНКО</div>
+        <div class="arole">Основатель F5GAME.RU</div>
+        <p class="abio">Создатель и ведущий бизнес-игр, эксперт по геймификации в бизнесе. Постоянно тестирует новые технические возможности и учит ведущих бизнес-игр делать свою работу ярче, эффективнее и прибыльнее.</p>
+        <div class="ach-grid">
+          <div class="ach"><span class="ach-ico">⭐</span><p>Автор линейки бизнес-игр «Паттерны», «Продажи как игра» и других</p></div>
+          <div class="ach"><span class="ach-ico">⭐</span><p>Основатель сообщества ведущих бизнес-игр F5GAME.RU</p></div>
+          <div class="ach"><span class="ach-ico">⭐</span><p>Эксперт по вайбкодингу и применению ИИ в создании контента</p></div>
+          <div class="ach"><span class="ach-ico">⭐</span><p>Создала сайт интенсива «Многоходовки» с помощью вайбкодинга за один вечер</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="price-sec" id="buy">
+  <div class="container">
+    <div class="stag">Участие</div>
+    <h2 class="stitle">САЙТ ИГРЫ<br>ВПЕЧАТЛЯЮЩИЙ И ПРОДАЮЩИЙ</h2>
+    <div class="price-card">
+      <div class="pc-title">Мастер-класс по вайбкодингу</div>
+      <ul class="pc-list">
+        <li><span class="chk">✓</span> Участие в мастер-классе онлайн (Zoom)</li>
+        <li><span class="chk">✓</span> Запись мастер-класса — доступ 3 месяца</li>
+        <li><span class="chk">✓</span> Набор пазлов для создания сайта (подарок)</li>
+        <li><span class="chk">✓</span> Инструкция по подключению Cloud</li>
+      </ul>
+      <div class="price-row">
+        <span class="p-old">25 000 ₽</span>
+        <span class="p-new">9 500 ₽</span>
+      </div>
+      <a href="#" class="btn-red" style="font-size:18px;padding:20px 64px">КУПИТЬ</a>
+      <p class="p-note">Покупка доступа к Cloud (~$20) оплачивается самостоятельно,<br>отдельно напрямую сервису.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">F5<span>GAME</span>.RU</div>
+  <p>Мастер-класс «Сайт Игры» — 24 апреля 2026</p>
+  <p style="margin-top:16px">© 2026 F5GAME.RU — Все права защищены</p>
+</footer>
+</body>
+</html>
