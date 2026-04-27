@@ -175,7 +175,31 @@ footer{background:var(--black);color:rgba(255,255,255,.45);padding:40px 5%;text-
 .flogo{font-family:'Unbounded',sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:12px}
 .flogo span{color:var(--pink)}
 footer p{font-size:13px;margin-bottom:6px}
-@media(max-width:900px){.hero-inner,.prob-grid,.prob-sol,.prog-grid,.aud-grid,.author-inner,.tech-inner{grid-template-columns:1fr}.hero-visual{order:-1}.hero-ph{height:320px}.why-grid{grid-template-columns:1fr}.how-steps{grid-template-columns:1fr}.ach-grid{grid-template-columns:1fr}.circle-wrap{width:340px;height:340px}.c-ring{width:270px;height:270px}.c-item{width:120px}.c-item span{font-size:12px}}
+@media(max-width:900px){
+  .hero-inner,.prob-grid,.prob-sol,.prog-grid,.aud-grid,.author-inner,.tech-inner{grid-template-columns:1fr}
+  .hero-visual{order:-1}
+  .hero-ph{max-width:280px;margin:0 auto}
+  .why-grid{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr}
+  .ach-grid{grid-template-columns:1fr}
+  .circle-wrap{width:320px;height:320px}
+  .c-ring{width:250px;height:250px}
+  .c-item{width:110px}
+  .c-item span{font-size:11px}
+  .fc{display:none}
+}
+@media(max-width:600px){
+  section{padding:50px 5%}
+  .hero{padding:80px 5% 50px}
+  .hero-title{font-size:36px}
+  .section-title{font-size:24px}
+  .price-card{padding:28px 20px}
+  .p-new{font-size:36px}
+  .hero-ph{max-width:240px}
+  .prob-sol{padding:24px}
+  .sol-stats{gap:10px}
+  footer>div>div:first-child{grid-template-columns:1fr!important}
+}
 @media(max-width:600px){section{padding:60px 5%}.hero{padding:90px 5% 60px}.price-card{padding:32px 22px}.p-new{font-size:42px}}
 
 /* Floating hearts animation */
