@@ -384,6 +384,75 @@ footer p{font-size:13px;margin-bottom:6px}
   </div>
 </section>
 
+
+<section style="background:#fff;">
+  <div class="container">
+    <div class="stag">Калькулятор</div>
+    <h2 class="stitle">Посчитайте свою экономию</h2>
+    <p class="slead" style="margin-bottom:32px">Сколько мероприятий вы проводите в год?</p>
+
+    <div style="max-width:700px;">
+
+      <!-- Slider -->
+      <div style="display:flex;align-items:center;gap:20px;margin-bottom:40px;">
+        <input type="range" min="1" max="20" value="3" step="1" id="calc-slider"
+          style="flex:1;height:6px;accent-color:#ED1E79;cursor:pointer"/>
+        <div style="background:linear-gradient(135deg,#ED1E79,#732BC1);color:#fff;font-family:'Unbounded',sans-serif;font-size:24px;font-weight:900;min-width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;" id="calc-num">3</div>
+      </div>
+
+      <!-- Cards -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
+        <div style="background:#F5F5F7;border-radius:20px;padding:28px 24px;">
+          <p style="font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:12px;">С дизайнером</p>
+          <p style="font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:#111;margin-bottom:6px;line-height:1" id="calc-designer">105 000 ₽</p>
+          <p style="font-size:13px;color:#888;margin:0" id="calc-time">+ 3 недели ожидания</p>
+        </div>
+        <div style="background:#F5F5F7;border-radius:20px;padding:28px 24px;border:2px solid #ED1E79;">
+          <p style="font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#ED1E79;margin-bottom:12px;">Вайбкодинг</p>
+          <p style="font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:#111;margin-bottom:6px;line-height:1">11 300 ₽</p>
+          <p style="font-size:13px;color:#888;margin:0">мастер-класс + Claude</p>
+        </div>
+      </div>
+
+      <!-- Savings banner -->
+      <div style="background:linear-gradient(135deg,#390084,#732BC1);border-radius:20px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+        <div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.6);margin:0 0 6px;">Ваша экономия</p>
+          <p style="font-family:'Unbounded',sans-serif;font-size:36px;font-weight:900;color:#fff;margin:0;line-height:1" id="calc-save">93 700 ₽</p>
+        </div>
+        <a href="#buy" class="btn-red" style="font-size:15px;padding:16px 36px;">ХОЧУ СЭКОНОМИТЬ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var slider = document.getElementById('calc-slider');
+  var numEl = document.getElementById('calc-num');
+  var designerEl = document.getElementById('calc-designer');
+  var timeEl = document.getElementById('calc-time');
+  var saveEl = document.getElementById('calc-save');
+
+  function fmt(n){ return n.toLocaleString('ru-RU') + ' ₽'; }
+  function weeks(n){ return n===1?'неделя':n<5?'недели':'недель'; }
+
+  function update(){
+    var n = parseInt(slider.value);
+    numEl.textContent = n;
+    var designer = n * 35000;
+    var vibe = 9500 + 1800;
+    var saved = designer - vibe;
+    designerEl.textContent = fmt(designer);
+    timeEl.textContent = '+ ' + n + ' ' + weeks(n) + ' ожидания';
+    saveEl.textContent = fmt(saved);
+  }
+
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+
 <section class="prog-sec">
   <div class="container">
     <div class="stag">Программа</div>
