@@ -188,6 +188,10 @@ footer p{font-size:13px;margin-bottom:6px}
   .c-item span{font-size:11px}
   .fc{display:none}
 }
+@media(max-width:900px){
+  .circle-wrap{display:none}
+  .orbit-mobile{display:flex!important}
+}
 @media(max-width:600px){
   section{padding:50px 5%}
   .hero{padding:80px 5% 50px}
@@ -312,7 +316,33 @@ footer p{font-size:13px;margin-bottom:6px}
       <div class="c-item" style="bottom:4px;left:50%;transform:translateX(-50%)"><div class="c-dot" style="animation:dotPulse 2s ease-in-out infinite;animation-delay:1.33s"></div><span>Результаты игры</span></div>
       <div class="c-item" style="top:50%;left:-24px;transform:translateY(-50%)"><div class="c-dot" style="animation:dotPulse 2s ease-in-out infinite;animation-delay:1.66s"></div><span>Продающие смыслы</span></div>
     </div>
-        <p class="more-txt">и многое другое</p>
+        <div class="orbit-mobile" style="display:none;flex-direction:column;gap:12px;margin-top:32px;">
+      <div style="display:flex;align-items:center;gap:12px;background:var(--gray);border-radius:14px;padding:14px 18px;">
+        <div style="width:10px;height:10px;background:var(--purple);border-radius:50%;flex-shrink:0"></div>
+        <span style="font-size:15px;font-weight:600;color:var(--black)">Пробуждение жгучего любопытства</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--gray);border-radius:14px;padding:14px 18px;">
+        <div style="width:10px;height:10px;background:var(--purple);border-radius:50%;flex-shrink:0"></div>
+        <span style="font-size:15px;font-weight:600;color:var(--black)">Развеивание заблуждений</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--gray);border-radius:14px;padding:14px 18px;">
+        <div style="width:10px;height:10px;background:var(--purple);border-radius:50%;flex-shrink:0"></div>
+        <span style="font-size:15px;font-weight:600;color:var(--black)">Знакомство с ведущим</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--gray);border-radius:14px;padding:14px 18px;">
+        <div style="width:10px;height:10px;background:var(--purple);border-radius:50%;flex-shrink:0"></div>
+        <span style="font-size:15px;font-weight:600;color:var(--black)">Опыт других участников</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--gray);border-radius:14px;padding:14px 18px;">
+        <div style="width:10px;height:10px;background:var(--purple);border-radius:50%;flex-shrink:0"></div>
+        <span style="font-size:15px;font-weight:600;color:var(--black)">Результаты игры</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--gray);border-radius:14px;padding:14px 18px;">
+        <div style="width:10px;height:10px;background:var(--purple);border-radius:50%;flex-shrink:0"></div>
+        <span style="font-size:15px;font-weight:600;color:var(--black)">Продающие смыслы</span>
+      </div>
+    </div>
+    <p class="more-txt">и многое другое</p>
   </div>
 </section>
 
