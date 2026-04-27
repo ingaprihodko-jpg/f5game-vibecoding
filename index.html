@@ -252,33 +252,13 @@ footer p{font-size:13px;margin-bottom:6px}
 }
 @media(max-width:600px){
   #orbit-girl{width:140px!important;margin-top:-30px!important}
-}
-/* Modal */
-.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
-.modal-overlay.open{display:flex}
-.modal-box{background:#fff;border-radius:28px;padding:48px;max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
-.modal-close{position:absolute;top:20px;right:20px;background:var(--gray);border:none;border-radius:50%;width:36px;height:36px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--black)}
-.modal-close:hover{background:#e0e0e0}
-.modal-title{font-family:'Unbounded',sans-serif;font-size:22px;font-weight:900;color:var(--black);text-transform:uppercase;line-height:1.2;margin-bottom:8px}
-.modal-subtitle{font-size:14px;color:var(--text-light);margin-bottom:28px}
-.modal-price{display:flex;align-items:center;gap:14px;margin-bottom:28px}
-.modal-price .old{font-size:18px;color:#aaa;text-decoration:line-through;font-weight:600}
-.modal-price .new{font-family:'Unbounded',sans-serif;font-size:32px;font-weight:900;color:var(--black)}
-.modal-label{font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--black);margin-bottom:14px}
-.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
-.role-btn{background:var(--gray);border:2px solid transparent;border-radius:14px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--black);cursor:pointer;text-align:center;transition:all 0.15s}
-.role-btn:hover{border-color:rgba(237,30,121,0.3);background:#fdf0f6}
-.role-btn.selected{border-color:var(--pink);background:#fdf0f6;color:var(--pink)}
-.modal-btn{width:100%;background:var(--red);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:1.5px;border:none;border-radius:40px;padding:18px;cursor:pointer;box-shadow:0 8px 24px rgba(211,47,47,0.3);transition:transform 0.2s}
-.modal-btn:hover{transform:translateY(-2px)}
-.modal-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
-@media(max-width:600px){.modal-box{padding:28px 20px}.role-grid{grid-template-columns:1fr}}
+}.role-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <nav>
   <a href="#" class="logo">F5<span>GAME</span>.RU</a>
-  <a href="#" onclick="openBuyModal();return false;" class="nav-btn">Участвую</a>
+  <a href="https://f5game.site/vibecoding/tarif" target="_blank" class="nav-btn">Участвую</a>
 </nav>
 
 <section class="hero">
@@ -298,7 +278,7 @@ footer p{font-size:13px;margin-bottom:6px}
         <span class="price-new">9 500 ₽</span>
         <span class="price-save">−62%</span>
       </div>
-      <a href="#" onclick="openBuyModal();return false;" class="btn-red">УЧАСТВУЮ</a>
+      <a href="https://f5game.site/vibecoding/tarif" target="_blank" class="btn-red">УЧАСТВУЮ</a>
     </div>
     <div class="hero-visual" style="position:relative;">
       <img src="circle1.svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;opacity:0.3;z-index:0;pointer-events:none;"/>
@@ -676,50 +656,5 @@ footer p{font-size:13px;margin-bottom:6px}
   </div>
 </footer>
 
-<!-- Modal -->
-<div class="modal-overlay" id="buyModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeBuyModal()">✕</button>
-    <div class="modal-title">Сайт игры<br>впечатляющий и продающий</div>
-    <p class="modal-subtitle">Мастер-класс по вайбкодингу — 30 мая 2026, 10:00 МСК</p>
-    <div class="modal-price">
-      <span class="old">25 000 ₽</span>
-      <span class="new">9 500 ₽</span>
-    </div>
-
-    <div class="modal-label">Выберите ваш род деятельности:</div>
-    <div class="role-grid" id="roleGrid">
-      <div class="role-btn" onclick="selectRole(this)">Коуч</div>
-      <div class="role-btn" onclick="selectRole(this)">Эксперт-консультант</div>
-      <div class="role-btn" onclick="selectRole(this)">Игропрактик</div>
-      <div class="role-btn" onclick="selectRole(this)">Бизнес-тренер</div>
-      <div class="role-btn" onclick="selectRole(this)">HR специалист</div>
-      <div class="role-btn" onclick="selectRole(this)">Психолог</div>
-      <div class="role-btn" onclick="selectRole(this)">Преподаватель</div>
-      <div class="role-btn" onclick="selectRole(this)">Руководитель</div>
-      <div class="role-btn" onclick="selectRole(this)" style="grid-column:1/-1">Другое</div>
-    </div>
-
-    <button class="modal-btn" id="payBtn" disabled onclick="goToPay()">ОПЛАТИТЬ</button>
-  </div>
-</div>
-
-<script>
-function openBuyModal(){ document.getElementById('buyModal').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeBuyModal(){ document.getElementById('buyModal').classList.remove('open'); document.body.style.overflow=''; }
-document.getElementById('buyModal').addEventListener('click', function(e){ if(e.target===this) closeBuyModal(); });
-
-var selectedRole = '';
-function selectRole(el){
-  document.querySelectorAll('.role-btn').forEach(function(b){ b.classList.remove('selected'); });
-  el.classList.add('selected');
-  selectedRole = el.textContent.trim();
-  document.getElementById('payBtn').disabled = false;
-}
-function goToPay(){
-  if(!selectedRole) return;
-  window.location.href = 'https://f5game.site/vibecoding/tarif';
-}
-</script>
 </body>
 </html>
