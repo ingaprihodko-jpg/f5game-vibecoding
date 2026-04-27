@@ -580,7 +580,7 @@ footer p{font-size:13px;margin-bottom:6px}
 
 </section>
 
-<section class="author-sec" style="overflow:visible;position:relative;">
+<section class="author-sec">
   <div class="container">
     <div class="stag">Ведущий</div>
     <h2 class="stitle">Ваш ведущий</h2>
@@ -662,22 +662,5 @@ footer p{font-size:13px;margin-bottom:6px}
 </footer>
 
 
-<script>
-function positionOlga() {
-  var img = document.getElementById('olga-img');
-  var priceSec = document.getElementById('buy');
-  if (!img || !priceSec) return;
-  var imgRect = img.getBoundingClientRect();
-  var priceRect = priceSec.getBoundingClientRect();
-  var scrollY = window.scrollY;
-  var imgBottom = imgRect.bottom + scrollY;
-  var priceTop = priceRect.top + scrollY;
-  var diff = imgBottom - priceTop;
-  img.style.marginBottom = (-diff - 2) + 'px';
-  priceSec.style.paddingTop = Math.max(60, diff + 60) + 'px';
-}
-window.addEventListener('load', positionOlga);
-window.addEventListener('resize', positionOlga);
-</script>
 </body>
 </html>
