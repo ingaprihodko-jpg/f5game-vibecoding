@@ -245,6 +245,10 @@ footer p{font-size:13px;margin-bottom:6px}
 @media(max-width:700px){
   .footer-grid{grid-template-columns:1fr!important;gap:28px!important}
   .footer-grid>div{text-align:left}
+}
+@media(max-width:600px){
+  .calc-grid .stitle{font-size:20px}
+  #calc-designer, #calc-save{font-size:22px!important}
 }</style>
 </head>
 <body>
@@ -401,13 +405,13 @@ footer p{font-size:13px;margin-bottom:6px}
       </div>
 
       <!-- Cards -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
-        <div style="background:#F5F5F7;border-radius:20px;padding:28px 24px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;" class="calc-grid">
+        <div style="background:#F5F5F7;border-radius:20px;padding:20px 16px;">
           <p style="font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:12px;">С дизайнером</p>
           <p style="font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:#111;margin-bottom:6px;line-height:1" id="calc-designer">105 000 ₽</p>
           <p style="font-size:13px;color:#888;margin:0" id="calc-time">+ 3 недели ожидания</p>
         </div>
-        <div style="background:#F5F5F7;border-radius:20px;padding:28px 24px;border:2px solid #ED1E79;">
+        <div style="background:#F5F5F7;border-radius:20px;padding:20px 16px;border:2px solid #ED1E79;">
           <p style="font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#ED1E79;margin-bottom:12px;">Вайбкодинг</p>
           <p style="font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:#111;margin-bottom:6px;line-height:1">11 300 ₽</p>
           <p style="font-size:13px;color:#888;margin:0">мастер-класс + Claude</p>
@@ -415,7 +419,7 @@ footer p{font-size:13px;margin-bottom:6px}
       </div>
 
       <!-- Savings banner -->
-      <div style="background:linear-gradient(135deg,#390084,#732BC1);border-radius:20px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div style="background:linear-gradient(135deg,#390084,#732BC1);border-radius:20px;padding:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
         <div>
           <p style="font-size:13px;color:rgba(255,255,255,0.6);margin:0 0 6px;">Ваша экономия</p>
           <p style="font-family:'Unbounded',sans-serif;font-size:36px;font-weight:900;color:#fff;margin:0;line-height:1" id="calc-save">93 700 ₽</p>
