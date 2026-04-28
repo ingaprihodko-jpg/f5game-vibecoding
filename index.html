@@ -156,7 +156,7 @@ section{padding:90px 5%}
 .ach{background:#fff;border-radius:16px;padding:20px;display:flex;gap:12px;align-items:flex-start;border:1px solid rgba(0,0,0,.06)}
 .ach-ico{font-size:22px;flex-shrink:0}
 .ach p{font-size:14px;color:var(--text);line-height:1.5;font-weight:500}
-.price-sec{background:linear-gradient(135deg,#1a1a2e,#16213e);text-align:center;position:relative;overflow:hidden}
+.price-sec{background:linear-gradient(135deg,#1a1a2e,#16213e);text-align:center;position:relative;overflow:visible}
 .price-sec::before{content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(237,30,121,0.08) 0%,transparent 70%);border-radius:50%}
 .price-sec .stag{color:var(--yellow)}
 .price-sec .stag::before{background:var(--yellow)}
@@ -613,7 +613,10 @@ p, li, span, div, label, a, input, select, button:not(.btn-red):not(.nav-btn),
 
 
 
-<section class="price-sec" id="buy" style="padding-top:220px;">
+<section class="price-sec" id="buy" style="padding-top:200px;position:relative;overflow:visible;">
+  <div style="position:absolute;top:-180px;left:50%;transform:translateX(-50%);z-index:10;width:280px;pointer-events:none;">
+    <img src="hero.svg" alt="" style="width:100%;height:auto;display:block;"/>
+  </div>
   <div class="container">
     <h2 class="stitle">САЙТ ЗА 1 ВЕЧЕР</h2>
     <p style="font-size:16px;color:rgba(255,255,255,0.5);margin-top:12px;margin-bottom:0;letter-spacing:1px;">Ведущая — Анастасия Соликова</p>
