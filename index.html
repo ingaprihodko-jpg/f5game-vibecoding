@@ -9,7 +9,7 @@
 :root{--pink:#ED1E79;--purple:#732BC1;--blue:#20BAEF;--red:#D81B7A;--green:#2AA817;--yellow:#F7E432;--light-pink:#FF9ADF;--dark-purple:#390084;--black:#111;--gray:#F5F5F7;--text:#1a1a1a;--text-light:#555}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Manrope',sans-serif;background:#fff;color:var(--text);overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between}
+nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-family:'Unbounded',sans-serif;font-weight:900;font-size:18px;color:var(--black);text-decoration:none}
 .logo span{color:var(--pink)}
 .nav-btn{background:var(--red);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;border:none;border-radius:40px;padding:10px 24px;cursor:pointer;text-decoration:none}
@@ -39,7 +39,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .blob2{position:absolute;bottom:20px;left:-20px;width:120px;height:120px;background:rgba(32,186,239,.1);border-radius:50%}
 .ph-em{font-size:90px;position:relative;z-index:1}
 .ph-lbl{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--purple);text-align:center;text-transform:uppercase;letter-spacing:1px;position:relative;z-index:1;line-height:1.5}
-.fc{position:absolute;border-radius:14px;padding:8px 12px;font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:10}
+.fc{position:absolute;border-radius:14px;padding:8px 12px;font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:9}
 .fc1{top:10px;left:0;background:#fff;color:var(--black);border-left:3px solid var(--pink);animation:f1 3s ease-in-out infinite}
 .fc2{bottom:60px;right:0;background:var(--dark-purple);color:#fff;animation:f2 3.5s ease-in-out infinite}
 @keyframes f1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -211,7 +211,7 @@ footer p{font-size:13px;margin-bottom:6px}
 @media(max-width:600px){section{padding:60px 5%}.hero{padding:90px 5% 60px}.price-card{padding:32px 22px}.p-new{font-size:42px}}
 
 /* Floating hearts animation */
-.hearts-wrap { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; overflow:visible; }
+.hearts-wrap { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9; overflow:visible; }
 .heart { position:absolute; animation: floatHeart ease-in-out infinite; opacity:0; }
 .heart:nth-child(1) { left:20%; bottom:45%; font-size:28px; animation-duration:2.5s; animation-delay:0s; }
 .heart:nth-child(2) { left:28%; bottom:48%; font-size:22px; animation-duration:3s; animation-delay:0.5s; }
@@ -336,7 +336,7 @@ p, li, span, div, label, a, input, select, button:not(.btn-red):not(.nav-btn),
     <div class="circle-wrap">
       <div class="c-ring"></div>
       <div class="c-center" style="width:220px;height:220px;background:transparent;box-shadow:none;overflow:visible;">
-        <img src="hero.svg" alt="Ольга с игрой" id="orbit-girl" style="width:240px;height:auto;margin-top:-60px;position:relative;z-index:10;"/>
+        <img src="hero.svg" alt="Ольга с игрой" id="orbit-girl" style="width:240px;height:auto;margin-top:-60px;position:relative;z-index:9;"/>
       </div>
       <div class="c-item" style="top:4px;left:50%;transform:translateX(-50%)"><div class="c-dot" style="animation:dotPulse 2s ease-in-out infinite;animation-delay:0s"></div><span>Пробуждение жгучего любопытства</span></div>
       <div class="c-item" style="top:72px;left:4px"><div class="c-dot" style="animation:dotPulse 2s ease-in-out infinite;animation-delay:0.15s"></div><span>Вовлечение в путь клиента</span></div>
@@ -554,13 +554,13 @@ p, li, span, div, label, a, input, select, button:not(.btn-red):not(.nav-btn),
   </div>
 </section>
 
-<section class="tech-sec">
+<section class="tech-sec" style="padding-bottom:0;overflow:visible;position:relative;">
   <div class="container">
     <div class="stag">Философия</div>
     <h2 class="stitle">Технологии не заменят вас,<br>но усилят</h2>
     <div class="tech-inner">
       <div class="tech-vis" style="padding:0;background:transparent;">
-        <img src="robot.svg" alt="Человек + ИИ" style="width:70%;max-width:280px;height:auto;display:block;border-radius:24px;margin:0 auto;"/>
+        <img src="robot.svg" alt="Человек + ИИ" style="width:100%;max-width:360px;height:auto;display:block;margin:0 auto;margin-bottom:-50px;position:relative;z-index:11;"/>
       </div>
       <div class="tpoints">
         <div class="tpoint"><div class="tpoint-ico"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="8" fill="#ED1E79"/><circle cx="14" cy="14" r="8" stroke="white" stroke-width="1.8"/><circle cx="14" cy="14" r="4.5" stroke="white" stroke-width="1.8"/><circle cx="14" cy="14" r="1.5" fill="white"/></svg></div><div><h4>Смыслы + инструмент</h4><p>На интенсиве речь идёт не только о технической стороне создания сайта, но и о его логике и смыслах</p></div></div>
@@ -572,7 +572,7 @@ p, li, span, div, label, a, input, select, button:not(.btn-red):not(.nav-btn),
 
 </section>
 
-<div style="background:linear-gradient(90deg,#ED1E79,#732BC1,#ED1E79);padding:20px 0;overflow:hidden;position:relative;z-index:10;">
+<div style="background:linear-gradient(90deg,#ED1E79,#732BC1,#ED1E79);padding:20px 0;overflow:hidden;position:relative;z-index:9;">
   <div class="ticker-track">
     <span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span><span>ВЫ ОСВОИТЕ ВАЙБКОДИНГ ЗА 1 ВЕЧЕР</span>
   </div>
