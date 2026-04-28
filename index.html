@@ -199,16 +199,27 @@ footer p{font-size:13px;margin-bottom:6px}
 @media(max-width:600px){
   section{padding:50px 5%}
   .hero{padding:80px 5% 50px}
-  .hero-title{font-size:36px}
-  .section-title{font-size:24px}
+  .hero-title{font-size:clamp(32px,8vw,48px)!important}
+  .stitle{font-size:clamp(24px,6vw,32px)!important}
   .price-card{padding:28px 20px}
-  .p-new{font-size:36px}
+  .p-new{font-size:36px!important}
   .hero-ph{max-width:240px}
-  .prob-sol{padding:24px}
+  .prob-sol{grid-template-columns:1fr!important;padding:24px}
   .sol-stats{gap:10px}
+  .tech-inner{grid-template-columns:1fr!important}
+  .prog-grid{grid-template-columns:1fr!important}
+  .how-steps{grid-template-columns:1fr!important}
+  .aud-grid{grid-template-columns:1fr!important}
+  .calc-grid{grid-template-columns:1fr!important}
+  .footer-grid{grid-template-columns:1fr!important;gap:28px!important}
+  .hero-inner{grid-template-columns:1fr!important}
+  .author-inner{grid-template-columns:1fr!important}
+  .ach-grid{grid-template-columns:1fr!important}
+  .why-grid{grid-template-columns:1fr!important}
+  .prob-grid{grid-template-columns:1fr!important}
   footer>div>div:first-child{grid-template-columns:1fr!important}
 }
-@media(max-width:600px){section{padding:60px 5%}.hero{padding:90px 5% 60px}.price-card{padding:32px 22px}.p-new{font-size:42px}}
+
 
 /* Floating hearts animation */
 .hearts-wrap { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9; overflow:visible; }
@@ -252,7 +263,7 @@ footer p{font-size:13px;margin-bottom:6px}
 }
 @media(max-width:600px){
   #orbit-girl{width:140px!important;margin-top:-30px!important}
-}.role-grid{grid-template-columns:1fr}}
+}.role-grid{grid-template-columns:1fr}
 
 .ticker-wrap{overflow:hidden;background:linear-gradient(90deg,#ED1E79,#732BC1,#ED1E79);padding:20px 0;margin-top:48px;border-radius:16px;box-shadow:0 8px 32px rgba(237,30,121,0.5);border:2px solid rgba(255,255,255,0.1);}
 .ticker-track{display:flex;white-space:nowrap;animation:tickerMove 18s linear infinite;}
