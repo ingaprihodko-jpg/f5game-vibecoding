@@ -457,7 +457,7 @@ p, li, span, div, label, a, input, select, button:not(.btn-red):not(.nav-btn),
   var saveEl = document.getElementById('calc-save');
 
   function fmt(n){ return n.toLocaleString('ru-RU') + ' ₽'; }
-  function weeks(n){ return n===1?'неделя':n<5?'недели':'недель'; }
+  function weeks(n){ return 'неделя'; }
 
   function update(){
     var n = parseInt(slider.value);
